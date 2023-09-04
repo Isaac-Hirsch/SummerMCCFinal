@@ -7,8 +7,8 @@ from pyLCIO import IOIMPL, EVENT, UTIL
 parser = OptionParser()
 parser.add_option('-i', '--inFile', help='--inFile Output_REC.slcio',
                   type=str, default='Output_REC.slcio')
-parser.add_option('-o', '--outFile', help='--outFile nearestPairBIB',
-                  type=str, default='nearestPairBIB')
+parser.add_option('-o', '--outFile', help='--outFile nearestPair0NoBIB',
+                  type=str, default='nearestPair0NoBIB')
 (options, args) = parser.parse_args()
 
 #Gather all the files you want to run over.
@@ -192,9 +192,9 @@ for f in fnames:
 
         #Find out if the particle has decayed and if not, what is its pt
         #Collecting all the MCParticles
-        MCParticles = [particles for particles in event.getCollection("MCParticle")]
+        MCParticles = [particle for particle in event.getCollection("MCParticle")]
         if (len(MCParticles)==1) and (MCParticles[0].getGeneratorStatus()==1):
-            momentum[-1]=MCParticles[0].getVertexVec().Pt()
+            momentum[-1]=MCParticles[0].getMomentumVec().Pt()
 
 
 
