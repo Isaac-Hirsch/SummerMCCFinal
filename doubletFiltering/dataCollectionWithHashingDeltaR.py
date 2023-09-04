@@ -14,9 +14,9 @@ parser.add_option('-o', '--outFile', help='--outFile nearestPairBIB',
 #Gather all the files you want to run over.
 #Comment out all but 1 fnames
 #BIB
-fnames = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/photonGun_pT_0_50/photonGun_pT_0_50_reco_2000.slcio")
+#fnames = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/photonGun_pT_0_50/photonGun_pT_0_50_reco_2000.slcio")
 #0-50 pt muons
-#fnames = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio")
+fnames = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio")
 #250-1000 pt muons
 #fnames = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_250_1000/muonGun_pT_250_1000_reco_*.slcio")
 
@@ -325,7 +325,8 @@ output={
     "deltaPesudorapdity" : deltaPseudo,
     "deltaPhi" : deltaPhi,
     "deltaR" : deltaR,
-    "nHoles" : nHoles
+    "nHoles" : nHoles,
+    "momentum" : momentum
 }
 
 output_json = options.outFile+".json"
