@@ -195,8 +195,8 @@ for f in fnames:
             deltaPhi[-1].append([])
             deltaR[-1].append([])
             nHoles[-1].append(0)
-            hitPseudo.append([])
-            hitPhi.append([])
+            hitPseudo[-1].append([])
+            hitPhi[-1].append([])
 
 
 
@@ -322,8 +322,8 @@ for f in fnames:
                 if noHits[index][1]:
                     noHits[index][1]=False
                 firstLayerHit[index].append((hit.getPositionVec().PseudoRapidity(),hit.getPositionVec().Phi()))
-                hitPseudo[-1][index].append(hit.getPositionVec().PseudoRapidity())
-                hitPhi[-1][index].append(hit.getPositionVec().Phi())
+                hitPseudo[-1][1+index].append(hit.getPositionVec().PseudoRapidity())
+                hitPhi[-1][1+index].append(hit.getPositionVec().Phi())
 
         #Run through every hit in the first layer of each doublet and find its nearest neighbor in terms of delta R on the second layer using breadth-first search    
         for i in range(8):
@@ -348,7 +348,9 @@ output={
     "nHoles" : nHoles,
     "momentum" : momentum,
     "pseudo" : mcPseudo,
-    "phi" : mcPhi
+    "phi" : mcPhi,
+    "hitPseudo" : hitPseudo,
+    "hitPhi" : hitPhi
 }
 
 output_json = options.outFile+".json"
