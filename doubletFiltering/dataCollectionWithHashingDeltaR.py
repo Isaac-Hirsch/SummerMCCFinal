@@ -200,8 +200,8 @@ for f in fnames:
         MCParticles = [particle for particle in event.getCollection("MCParticle")]
         if (len(MCParticles)==1) and (MCParticles[0].getGeneratorStatus()==1):
             momentum[-1]=MCParticles[0].getMomentumVec().Pt()
-            mcPseudo[-1].append(MCParticles[0].getMomentumVec().PseudoRapidity())
-            mcPhi[-1].append(MCParticles[0].getMomentumVec().Phi())
+            mcPseudo[-1]=MCParticles[0].getMomentumVec().PseudoRapidity()
+            mcPhi[-1]=MCParticles[0].getMomentumVec().Phi()
 
 
 
@@ -334,7 +334,9 @@ output={
     "deltaPhi" : deltaPhi,
     "deltaR" : deltaR,
     "nHoles" : nHoles,
-    "momentum" : momentum
+    "momentum" : momentum,
+    "pseudo" : mcPseudo,
+    "phi" : mcPhi
 }
 
 output_json = options.outFile+".json"
