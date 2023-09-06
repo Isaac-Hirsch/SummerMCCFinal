@@ -168,6 +168,9 @@ momentum=[]
 #Keep track of the pseudo and phi of the particle
 mcPseudo=[]
 mcPhi=[]
+#Keep track os pseudo and phi of hits
+hitPseudo=[]
+hitPhi=[]
 
 #Loop over every file
 for f in fnames:
@@ -184,12 +187,16 @@ for f in fnames:
         momentum.append(0)
         mcPseudo.append(0)
         mcPhi.append(0)
+        hitPseudo.append([])
+        hitPhi.append([])
 
         for i in range(9):
             deltaPseudo[-1].append([])
             deltaPhi[-1].append([])
             deltaR[-1].append([])
             nHoles[-1].append(0)
+            hitPseudo.append([])
+            hitPhi.append([])
 
 
 
@@ -252,6 +259,9 @@ for f in fnames:
                 if noHits[1]:
                     noHits[1]=False
                 firstLayerHit.append((hit.getPositionVec().PseudoRapidity(),hit.getPositionVec().Phi()))
+                hitPseudo[-1][0].append(hit.getPositionVec().PseudoRapidity())
+                hitPhi[-1][0].append(hit.getPositionVec().Phi())
+
         
         #Checking if their is at least 1 hit on both layers of the doublet
         if noHits[0] and  noHits[1]:
@@ -312,6 +322,8 @@ for f in fnames:
                 if noHits[index][1]:
                     noHits[index][1]=False
                 firstLayerHit[index].append((hit.getPositionVec().PseudoRapidity(),hit.getPositionVec().Phi()))
+                hitPseudo[-1][index].append(hit.getPositionVec().PseudoRapidity())
+                hitPhi[-1][index].append(hit.getPositionVec().Phi())
 
         #Run through every hit in the first layer of each doublet and find its nearest neighbor in terms of delta R on the second layer using breadth-first search    
         for i in range(8):
