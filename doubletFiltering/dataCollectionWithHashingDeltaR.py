@@ -165,6 +165,9 @@ deltaR=[]
 nHoles=[]
 #momentum has one index per event, stores 0 if the particle has decayed, and the truth particles momentum if it has not decayed
 momentum=[]
+#Keep track of the pseudo and phi of the particle
+mcPseudo=[]
+mcPhi=[]
 
 #Loop over every file
 for f in fnames:
@@ -179,6 +182,8 @@ for f in fnames:
         deltaR.append([])
         nHoles.append([])
         momentum.append(0)
+        mcPseudo.append(0)
+        mcPhi.append(0)
 
         for i in range(9):
             deltaPseudo[-1].append([])
@@ -195,6 +200,9 @@ for f in fnames:
         MCParticles = [particle for particle in event.getCollection("MCParticle")]
         if (len(MCParticles)==1) and (MCParticles[0].getGeneratorStatus()==1):
             momentum[-1]=MCParticles[0].getMomentumVec().Pt()
+            mcPseudo[-1].append(MCParticles[0].getMomentumVec().PseudoRapidity())
+            mcPhi[-1].append(MCParticles[0].getMomentumVec().Phi())
+
 
 
 
