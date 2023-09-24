@@ -184,12 +184,16 @@ for f in fnames:
         deltaPhi.append([])
         deltaR.append([])
         nHoles.append([])
+        hitPseudo.append([])
+        hitPhi.append([])
 
         for i in range(9):
             deltaPseudo[-1].append([])
             deltaPhi[-1].append([])
             deltaR[-1].append([])
             nHoles[-1].append(0)
+            hitPseudo[-1].append([])
+            hitPhi[-1].append([])
 
 
 
