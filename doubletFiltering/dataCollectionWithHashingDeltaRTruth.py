@@ -7,11 +7,11 @@ from pyLCIO import IOIMPL, EVENT, UTIL
 #Gather all the files you want to run over.
 #Comment out all but 1 fnames
 #BIB
-#fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/photonGun_pT_0_50/photonGun_pT_0_50_reco_2000.slcio"), False, "nearestPair0NoBIB"
+#fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/photonGun_pT_0_50/photonGun_pT_0_50_reco_2000.slcio"), False, "nearestPair0BIB"
 #0-50 pt muons
-fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio"), True, "nearestPair0BIB"
+fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio"), True, "nearestPair0NoBIB"
 #250-1000 pt muons
-#fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_250_1000/muonGun_pT_250_1000_reco_*.slcio"), True, "nearestPair250BIB"
+#fnames, usingTruth, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_250_1000/muonGun_pT_250_1000_reco_*.slcio"), True, "nearestPair250NoBIB"
 
 parser = OptionParser()
 parser.add_option('-i', '--inFile', help='--inFile Output_REC.slcio',
