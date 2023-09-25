@@ -200,8 +200,7 @@ for f in fnames:
         #Find out if the particle has decayed and if not, what is its pt
         #Collecting all the MCParticles
         MCParticles = [particle for particle in event.getCollection("MCParticle")]
-        if (len(MCParticles)==1) and (MCParticles[0].getGeneratorStatus()==1):
-            momentum[-1]=MCParticles[0].getMomentumVec().Pt()
+        momentum[-1]=MCParticles[0].getMomentumVec().Pt()
 
 
 
@@ -310,6 +309,7 @@ for f in fnames:
             #Detcting if the hit is connected with a muon if 
             if usingTruth:
                 if relation.getRelatedToObjects(hit)[0].getMCParticle().getGeneratorStatus() != 1:
+                    print("Skipped!")
                     continue
             
             #Decoder
