@@ -28,9 +28,10 @@ for f in fnames:
         MCParticles=event.getCollection("MCParticle")
 
         for particle in MCParticles:
-            vertex=particle.getVertexVec()
-            z_0.append(vertex.Z())
-            r_0.append(np.sqrt(vertex.X()**2+vertex.Y()**2))
+            if particle.getGeneratorStatus()==1:
+                vertex=particle.getVertexVec()
+                z_0.append(vertex.Z())
+                r_0.append(np.sqrt(vertex.X()**2+vertex.Y()**2))
 
 #Wrapping data into a dictionary that will be exported as a json
 output={
