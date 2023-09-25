@@ -165,9 +165,6 @@ deltaR=[]
 nHoles=[]
 #momentum has one index per event, stores 0 if the particle has decayed, and the truth particles momentum if it has not decayed
 momentum=[]
-#Keep track of the pseudo and phi of the particle
-mcPseudo=[]
-mcPhi=[]
 #Keep track os pseudo and phi of hits
 hitPseudo=[]
 hitPhi=[]
@@ -186,6 +183,7 @@ for f in fnames:
         nHoles.append([])
         hitPseudo.append([])
         hitPhi.append([])
+        momentum.append(0)
 
         for i in range(9):
             deltaPseudo[-1].append([])
@@ -196,6 +194,14 @@ for f in fnames:
             hitPhi[-1].append([])
 
 
+
+
+
+        #Find out if the particle has decayed and if not, what is its pt
+        #Collecting all the MCParticles
+        MCParticles = [particle for particle in event.getCollection("MCParticle")]
+        if (len(MCParticles)==1) and (MCParticles[0].getGeneratorStatus()==1):
+            momentum[-1]=MCParticles[0].getMomentumVec().Pt()
 
 
 
@@ -353,8 +359,6 @@ output={
     "deltaR" : deltaR,
     "nHoles" : nHoles,
     "momentum" : momentum,
-    "pseudo" : mcPseudo,
-    "phi" : mcPhi,
     "hitPseudo" : hitPseudo,
     "hitPhi" : hitPhi
 }
