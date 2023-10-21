@@ -68,33 +68,33 @@ for f in fnames:
 
         for relationsObject in mcTracksCollections:
 
-            #Get the tracks from the relations object. There should only be 1, but I am looping over it incase there is more.
-            for tracks in relationsObject.getTo():
+            #Get the tracks from the relations object.
+            track=relationsObject.getTo()
                 
-                #Get the hits from the trcks
-                for hit in tracks.getTrackerHits():
-                    #Decoder to get the location of the hit
-                    cellID = int(hit.getCellID0())
-                    decoder.setValue(cellID)
-                    layer = decoder['layer'].value()
-                    system=decoder["system"].value()
-                    side = decoder["side"].value()
-                    
-                    #finding the hash for the hit so it can be put into the list
-                    #Barrel endcaps
-                    if (system==0):
-                        hash=0
-                    elif (system==1):
-                        hash=1+layer//2+(side==1)*4
+            #Get the hits from the trcks
+            for hit in track.getTrackerHits():
+                #Decoder to get the location of the hit
+                cellID = int(hit.getCellID0())
+                decoder.setValue(cellID)
+                layer = decoder['layer'].value()
+                system=decoder["system"].value()
+                side = decoder["side"].value()
+                
+                #finding the hash for the hit so it can be put into the list
+                #Barrel endcaps
+                if (system==0):
+                    hash=0
+                elif (system==1):
+                    hash=1+layer//2+(side==1)*4
 
-                    #inner hits
-                    if layer%2==0:
-                        innerPhi[-1][hash]=hit.getPositionVec().Phi()
-                        innerTheta[-1][hash]=hit.getPositionVec().Theta()
-                    #outer hits
-                    else:
-                        outerPhi[-1][hash]=hit.getPositionVec().Phi()
-                        outerTheta[-1][hash]=hit.getPositionVec().Theta()
+                #inner hits
+                if layer%2==0:
+                    innerPhi[-1][hash]=hit.getPositionVec().Phi()
+                    innerTheta[-1][hash]=hit.getPositionVec().Theta()
+                #outer hits
+                else:
+                    outerPhi[-1][hash]=hit.getPositionVec().Phi()
+                    outerTheta[-1][hash]=hit.getPositionVec().Theta()
 
             for i in range(9):
                 if (deltaPhi[-1][i] !=0) and (deltaPhi[-1][i] !=0):
@@ -102,8 +102,8 @@ for f in fnames:
                     deltaTheta[-1][i]=innerTheta[-1][i]-outerTheta[-1][i]
 
             #Getting the truth information of the particle that created the track
-            for particle in relationsObject.getFrom():
-                momentum[-1]=particle.getMomentumVec().Pt()
+            particle=relationsObject.getFrom()
+            momentum[-1]=particle.getMomentumVec().Pt()
 
 #Wrapping data into a dictionary that will be exported as a json
 output={
