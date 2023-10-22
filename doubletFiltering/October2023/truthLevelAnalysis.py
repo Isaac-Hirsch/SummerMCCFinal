@@ -9,7 +9,7 @@ from pyLCIO import IOIMPL, EVENT, UTIL
 #0-50 pt muons
 fnames, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio"), "deltaThetaPhi0NoBIBTruth"
 #50-250 pt muons
-#fnames, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_0_50/muonGun_pT_50_250_reco_*.slcio"), "deltaThetaPhi50NoBIBTruth"
+#fnames, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_50_250/muonGun_pT_50_250_reco_*.slcio"), "deltaThetaPhi50NoBIBTruth"
 #250-1000 pt muons
 #fnames, outName = glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/reco/muonGun_pT_250_1000/muonGun_pT_250_1000_reco_*.slcio"), "deltaThetaPhi250NoBIBTruth"
 
@@ -96,8 +96,10 @@ for f in fnames:
                     outerPhi[-1][hash]=hit.getPositionVec().Phi()
                     outerTheta[-1][hash]=hit.getPositionVec().Theta()
 
+            #Calculating the difference
             for i in range(9):
-                if (deltaPhi[-1][i] !=0) and (deltaPhi[-1][i] !=0):
+                #Making sure there was 1 hit on both sides of the doublet
+                if (innerPhi[-1][i] !=0) and (outerPhi[-1][i] !=0):
                     deltaPhi[-1][i]=innerPhi[-1][i]-outerPhi[-1][i]
                     deltaTheta[-1][i]=innerTheta[-1][i]-outerTheta[-1][i]
 
