@@ -82,9 +82,9 @@ for f in fnames:
                 
                 #finding the hash for the hit so it can be put into the list
                 #Barrel endcaps
-                if (system==0):
+                if (system==1):
                     hash=0
-                elif (system==1):
+                elif (system==2):
                     hash=1+layer//2+(side==1)*4
 
                 #inner hits
