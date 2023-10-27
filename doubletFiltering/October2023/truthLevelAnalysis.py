@@ -114,8 +114,8 @@ thetaCut=np.zeros(9)
 deltaPhiArray=np.array(deltaPhi)
 deltaThetaArray=np.array(deltaTheta)
 for i in range(9):
-    phiCut[i]=np.percentile(deltaPhiArray[(deltaPhiArray[:,i]!=0) & (momentum >=1),i], 99.7)
-    thetaCut[i]=np.percentile(deltaThetaArray[(deltaThetaArray[:,i]!=0) & (momentum >=1),i], 99.7)
+    phiCut[i]=np.percentile(deltaPhiArray[(deltaPhiArray[:,i]!=0) & (np.array(momentum) >=1),i], 99.7)
+    thetaCut[i]=np.percentile(deltaThetaArray[(deltaThetaArray[:,i]!=0) & (np.array(momentum) >=1),i], 99.7)
 
 
 
