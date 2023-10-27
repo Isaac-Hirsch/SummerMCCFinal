@@ -134,7 +134,7 @@ for i in range(9):
     thetaDistribution.append([])
 
 #Gathering all the BIB files for which we will analyze the effects of the cuts
-fnamesBIB= glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/muonGun_pT_0_50/muonGun_pT_0_50_reco_1*.slcio")
+fnamesBIB= glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio")
 
 #Looping over all the BIB files
 for f in fnamesBIB:
