@@ -158,8 +158,12 @@ for f in fnamesBIB:
         mcTracksCollections=event.getCollection('MCParticle_SiTracks_Refitted')
 
         #Requiring that the particle has a momentum greater than 1 GeV
-        particle=([relationsObject for relationsObject in mcTracksCollections])[0].getFrom()
-        if particle.getMomentumVec().Pt() < 1:
+        particle=([relationsObject for relationsObject in mcTracksCollections])
+        if len(particle)!=0:
+            particle=particle[0].getFrom()
+            if particle.getMomentumVec().Pt() < 1:
+                continue
+        else:
             continue
         
         #Looping over the objects in the collection of truth level tracks
