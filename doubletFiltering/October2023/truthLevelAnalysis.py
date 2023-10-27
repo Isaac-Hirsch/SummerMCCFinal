@@ -151,7 +151,7 @@ for f in fnamesBIB:
         VEHitsCollection = event.getCollection("VETrackerHits")
 
         #creating a decoder that will be used layer to trace a hit back to its system and layer
-        encoding=hitsCollection.getParameters().getStringVal(EVENT.LCIO.CellIDEncoding)
+        encoding=VBHitsCollection.getParameters().getStringVal(EVENT.LCIO.CellIDEncoding)
         decoder=UTIL.BitField64(encoding)
 
         #collections of truth level tracks from mc particles
