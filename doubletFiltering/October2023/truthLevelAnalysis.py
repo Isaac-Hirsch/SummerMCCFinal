@@ -41,6 +41,7 @@ for f in fnames:
     #Loop over events in the file
     for event in reader:
         #Adding a list to store data for this particular event to each variable
+        momentum.append(0)
         innerTheta.append([])
         innerPhi.append([])
         outerTheta.append([])
@@ -106,7 +107,7 @@ for f in fnames:
 
             #Getting the truth information of the particle that created the track
             particle=relationsObject.getFrom()
-            momentum.append(particle.getMomentumVec().Pt())
+            momentum[-1]=particle.getMomentumVec().Pt()
 
 phiCut=np.zeros(9)
 thetaCut=np.zeros(9)
@@ -134,7 +135,7 @@ for i in range(9):
     thetaDistribution.append([])
 
 #Gathering all the BIB files for which we will analyze the effects of the cuts
-fnamesBIB= glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/muonGun_pT_0_50/muonGun_pT_0_50_reco_*.slcio")
+fnamesBIB= glob.glob("/data/fmeloni/DataMuC_MuColl10_v0A/recoBIB/muonGun_pT_0_50/muonGun_pT_0_50_reco_1*.slcio")
 
 #Looping over all the BIB files
 for f in fnamesBIB:
@@ -238,9 +239,9 @@ for f in fnamesBIB:
             hitSurvivalTotal[1+layer//2+(side==1)*4]=hitSurvivalTotal[1+layer//2+(side==1)*4]/(num+1)
             hitSurvivalPhi[1+layer//2+(side==1)*4]=hitSurvivalPhi[1+layer//2+(side==1)*4]/(num+1)
             hitSurvivalTheta[1+layer//2+(side==1)*4]=hitSurvivalTheta[1+layer//2+(side==1)*4]/(num+1)
-            #Getting the truth information of the particle that created the track
-            particle=relationsObject.getFrom()
-            momentumBIB.append(particle.getMomentumVec().Pt())
+        #Getting the truth information of the particle that created the track
+        particle=relationsObject.getFrom()
+        momentumBIB.append(particle.getMomentumVec().Pt())
 
 
 #Wrapping data into a dictionary that will be exported as a json
