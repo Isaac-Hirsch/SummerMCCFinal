@@ -41,7 +41,6 @@ for f in fnames:
     #Loop over events in the file
     for event in reader:
         #Adding a list to store data for this particular event to each variable
-        momentum.append(0)
         innerTheta.append([])
         innerPhi.append([])
         outerTheta.append([])
@@ -107,7 +106,7 @@ for f in fnames:
 
             #Getting the truth information of the particle that created the track
             particle=relationsObject.getFrom()
-            momentum[-1]=particle.getMomentumVec().Pt()
+            momentum.append(particle.getMomentumVec().Pt())
 
 phiCut=np.zeros(9)
 thetaCut=np.zeros(9)
@@ -126,6 +125,7 @@ for i in range(9):
 #Creating output data storage
 phiDistribution=[]
 thetaDistribution=[]
+momentumBIB=[]
 hitSurvivalPhi=np.zeros(9)
 hitSurvivalTheta=np.zeros(9)
 hitSurvivalTotal=np.zeros(9)
@@ -238,6 +238,9 @@ for f in fnamesBIB:
             hitSurvivalTotal[1+layer//2+(side==1)*4]=hitSurvivalTotal[1+layer//2+(side==1)*4]/(num+1)
             hitSurvivalPhi[1+layer//2+(side==1)*4]=hitSurvivalPhi[1+layer//2+(side==1)*4]/(num+1)
             hitSurvivalTheta[1+layer//2+(side==1)*4]=hitSurvivalTheta[1+layer//2+(side==1)*4]/(num+1)
+            #Getting the truth information of the particle that created the track
+            particle=relationsObject.getFrom()
+            momentumBIB.append(particle.getMomentumVec().Pt())
 
 
 #Wrapping data into a dictionary that will be exported as a json
@@ -251,7 +254,8 @@ output={
     "phiCut" : phiCut,
     "thetaCut" : thetaCut,
     "phiDistribution" : phiDistribution,
-    "thetaDistribution" : thetaDistribution
+    "thetaDistribution" : thetaDistribution,
+    "BIBPt" : momentumBIB
 }
 
 output_json = options.outFile+".json"
